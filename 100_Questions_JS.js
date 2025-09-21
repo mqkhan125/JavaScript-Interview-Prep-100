@@ -107,3 +107,159 @@ console.log(isEmptyObj ? "obj is empty" : "obj is not empty");
 let arrNum = [1, 2, 3, 4];
 let doubleArr = arrNum.map((val) => val * 2);
 console.log(doubleArr);
+
+
+// Qno.11 Convert an array of strings into a single comma-separated string.
+let ArrOfStr = ["apple", "banana", "mango"];
+
+let convertArrOfStr = ArrOfStr.join(",");
+console.log(convertArrOfStr);
+
+ // Qno.12 write a function to flatten a nested array (one level deep). e.g [1, [2,3],4] -> [1,2,3,4]
+ // Method 1
+let flatArr = [1,2,3,4, ['a', 'b', 'c'], 5,6]
+console.log(flatArr[4])
+
+flatArr.splice(4, 1, ...flatArr[4]) // splice change the origin array
+console.log(flatArr)
+
+// // Method 2
+let flatArr2 = [1,2,3,4,5,['q','a','s','i','m'], 6,7]
+
+ let singleArr = flatArr2.flat(1) // array k andar agar eik array hy tu flat(1) likna hay 2,3,4 tu flat(2) or 3 or 4.
+  console.log(singleArr)
+
+ // Qno 13 Write a function that checks if all elements in an array are numbers.
+// method 1 me condition base check karta hay
+  let arr = [1,2,3,'a','b',5,6];
+
+  function checkNumberArray(){
+    let isNumber = true;
+    arr.forEach((arr) => {
+        if(typeof arr !== 'number'){
+           isNumber = false;
+        }
+    })
+     return isNumber
+  }
+
+ let checkAllNumbers =  checkNumberArray(arr)
+ console.log(checkAllNumbers)
+
+//   // Method 2
+//   // method 2 me every() har eik everyOne k ly condional check kar raha hy agar true hoga ab true return karey ga.
+//    let array = [1, 2, 3, "a", "b", 5, 6];
+
+   function checkArrayNumber(localArr){
+      let newArr = localArr.every((elem) => typeof elem === 'number')
+      console.log(newArr)
+   }
+   checkArrayNumber(array);
+
+// QNo 14 Build a simple isPrime() function to check if a number is prime.
+let isPrimeNumber = [
+  1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+
+function isPrime(num) {
+  if (num < 2) return false;
+  if (num === 2) return true;
+  if (num % 2 === 0) return false;
+
+  for (let i = 3; i <= Math.sqrt(num); i += 2) {
+    if (num % i === 0) return false;
+  }
+  return true;
+}
+
+let result = isPrimeNumber.filter(isPrime);
+console.log(result);
+
+ // Q.15 Create a function that removes duplicate value from an array
+let duplicateArr = [1, 5, 4, 1, 1, 2, 2, 6, 6];
+ // Method 1 using the new Set() method
+ function removeDuplicateNum(remove) {
+   let set = new Set(remove);
+   return [...set]
+ }
+
+let resultRDArr = removeDuplicateNum(duplicateArr);
+console.log(resultRDArr)
+
+// Method 2 using the filter() method
+ function removeDuplicateNum1(dpNum){
+
+  let resultantArr = dpNum.filter((elem, index) => {
+        return dpNum.indexOf(elem) === index;
+    })
+    return resultantArr;
+ }
+
+ let resultRDArr1 = removeDuplicateNum1(duplicateArr)
+console.log(resultRDArr1)
+
+// // Qno.16 Find the Union of two array?
+let array1 = [1,2,3,4,5]
+let array2 = [1,2,3,4,5,6,7]
+
+let getUnion = () => {
+  let UnionArr = [...array1, ...array2]
+  return [...new Set(UnionArr)]
+}
+
+let resultUnionArr = getUnion()
+console.log(resultUnionArr)
+
+// // Qno.17 Find the intersection of two array?
+
+let arr3 = [1, 2, 3, 4, 5,6,7];
+let arr4 = [8, 2, 3, 4, 9, 16, 17];
+
+let getIntersection = () => {
+    let intersectionArr = arr3.filter((elem) => {
+        return arr4.includes(elem)
+    })
+    return intersectionArr
+}
+
+let resultIntersectionArr = getIntersection()
+console.log(resultIntersectionArr)
+
+ // Qno.18 How to remove the double values.
+let a = [1,2,1,1,1,1,2,2,2,23,3,3,4,5,6,6]
+let b = [...new Set(a)]
+console.log(b)
+
+ // Qno.19 hwo to find location of any elements in an array.
+let store = ['qasim', 'ali', 'javed']
+
+let name = 'qasim'
+for(let i = 0; i <= store.length; i++){
+    if(store[i] === name){
+        console.log(i)
+    }
+}
+
+// // Qno.20 solve the Currying
+// // old method
+
+function getSum(a){
+    return function(b){
+        return function(c){
+            return function(d){
+                return function(e){
+                    console.log(a+b+c+d+e)
+                }
+            }
+        }
+    }
+}
+getSum(5)(4)(3)(2)(1)
+
+// ES6 Method 2
+let getAdd = (a) => (b) => (c) => (d) => (e) => a + b + c * d + e
+let resultCurrying = getAdd(5)(4)(3)(2)(1);
+console.log(resultCurrying)
+
+let sliceStr = 'javascript';
+let sliceArr = ['j','a','v','a','s']
+console.log(sliceArr.slice(1,-3))
