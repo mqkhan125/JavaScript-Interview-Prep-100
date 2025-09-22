@@ -263,3 +263,145 @@ console.log(resultCurrying)
 let sliceStr = 'javascript';
 let sliceArr = ['j','a','v','a','s']
 console.log(sliceArr.slice(1,-3))
+
+// Qno.21 Create a function that reverse each word of a given sentence 
+let str = "I am Muhammad Qasim khan";
+let finalResults =  str.split(" ").map((word) => {
+    let reverseWord = word.split('').reverse().join('')
+    return reverseWord;
+}).join(' ')
+console.log(finalResults)
+
+
+// Qno.22 In an array of numbers and strings, onlyy add those numbers which are not strings.
+let numberArr = [1,2,3,'qasim',4,'javed',5]
+ let sumNum = 0;
+
+     let filterOutArr = numberArr.filter((num) => {
+         if(typeof num === 'number'){
+            console.log(num)
+             sumNum += num;
+            }
+        })
+        console.log(sumNum)
+
+        
+// Qno.23 How would you check if an number is an integer?
+let integer = 123;
+// method 1
+console.log(Number.isInteger(integer))
+// method 2
+console.log(integer % 1 === 0 )
+
+
+// Qno.24 Write a JavaScript function that reverse a number.
+let numbers = 12345;
+function reverseNum(num){
+   return Number(num.toString().split('').reverse().join(''))
+}
+let reverseResults = reverseNum(numbers)
+console.log(reverseResults)
+
+
+// Qno.25 Write a JavaScript function that returns a passed string with letters in alphabetical order.
+let string = "JavaScript is best programming language";
+
+function strSort(letter) {
+  return letter.split(" ").sort().join(" ");
+}
+
+let strSortResults = strSort(string);
+console.log(strSortResults);
+
+
+// // Qno.26 Write a JavaScript function that accepts a string as a parameter and convers the first
+// letter of each word of the string in upper case.
+let word = "i am web developer.";
+
+const capitalizeFristWord = (alpha) => {
+  let capitalizeWord = alpha.split(" ").map((elem) => {
+    return elem.charAt(0).toUpperCase() + elem.slice(1);
+  });
+  return capitalizeWord.join(" ");
+};
+let resultsOfCapital = capitalizeFristWord(word);
+console.log(resultsOfCapital);
+
+
+// Qno.27  Write a JS func to get the first element of an array. Passing a parameter 'n' will
+// return the first 'n' elements of the array.
+function passArrElement(Arr, n) {
+  if (!n) {
+    return Arr[0];
+  } else if (n > Arr.length) {
+    console.log("Array length is less than n");
+  } else {
+    return Arr.slice(0, n);
+  }
+}
+let resultArrElement = passArrElement([1, 2, 3, 4, 5], 4);
+console.log(resultArrElement);
+
+
+// Qno 28 Write a JS func to get the number of occurrences of each letter in specified string.
+let str1 = "MuhammadQasimkhan";
+
+const getOccurance = (string) => {
+  let obj = {};
+
+  string.toLowerCase().split("").forEach((letter) => {
+    if (obj.hasOwnProperty(letter)) {
+      obj[letter]++;
+    } else {
+      obj[letter] = 1;
+    }
+  });
+
+  for(let key in obj){
+    console.log(`${key} = ${obj[key]}`)
+  }
+};
+getOccurance(str1);
+
+
+// Qno 29 Write a JS program to find the most frequent item of an array.
+let numArr = [1, 2, 3, 4, 5, 2, 2, 3, 3, 4, 5, 6,1,1,];
+
+const getOccuranceNum = (num) => {
+  let freqObj = {};
+
+  num.forEach((letter) => {
+    if (freqObj.hasOwnProperty(letter)) {
+      freqObj[letter]++;
+    } else {
+      freqObj[letter] = 1;
+    }
+  });
+
+   let maxFreq = Math.max(...Object.values(freqObj));
+
+  let freqArr = Object.entries(freqObj);
+ let filteredArr = freqArr.filter((maxValue) => {
+    return maxValue[1] === maxFreq
+  });
+  console.log(filteredArr)
+};
+
+getOccuranceNum(numArr);
+
+
+// // Qno.30 Write a JS program to shuffle an array
+let arrays = [1,3,2,5,4]
+console.log(arrays)
+
+for(let ind in arrays){
+let randomInd = Math.floor(Math.random() * arrays.length);
+    //  Method 1 
+      let temp = arrays[ind];
+      arrays[ind] = arrays[randomInd];
+      arrays[randomInd] = temp
+
+   // short Method 2 using Desturction method
+//  [arrays[ind], arrays[randomInd]] = [arrays[randomInd], arrays[ind]];
+  }
+  console.log(arrays)
