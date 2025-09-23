@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .parent {
+        width: 400px;
+        height: 300px;
+        margin-top: 30px;
+        background-color: red;
+        padding: 30px;
+      }
+
+      #parent {
+        width: 300px;
+        height: 200px;
+        background-color: green;
+        padding: 30px;
+      }
+
+      #child {
+        width: 150px;
+        height: 100px;
+        background-color: blue;
+        padding: 30px;
+      }
+
+      
+
+    </style>
+  </head>
+  <body style="background-color: #0c0c0c; color: white">
+    <!-- html for Qno.32 -->
+    <p class="nameError" style="color: red"></p>
+    <div style="margin-bottom: 20px">
+      <label for="name">Name :</label>
+      <input type="text" id="name" placeholder="Enter your name" />
+    </div>
+    <div style="margin-bottom: 20px">
+      <p class="emailError" style="color: red"></p>
+      <label for="email">Email :</label>
+      <input type="text" id="email" placeholder="Enter your email" />
+    </div>
+    <div>
+      <p class="passwordError" style="color: red"></p>
+      <label for="Password">Password :</label>
+      <input type="text" id="password" placeholder="Enter your Password" />
+    </div>
+
+    <!-- html for Qno.33 -->
+    <div class="parent" id="grandParent">
+      GrandParent:
+      <div class="parent" id="parent">
+        Parent:
+        <div id="child">Child</div>
+      </div>
+    </div>
+
+    <!-- html for Qno.34 -->
+     <div style="margin-top: 30px;">
+      <label for="pass">Password: </label>
+      <input type="password" id="pass" placeholder="Enter pin code">
+      <button class="btn">show</button>
+     </div>
+
+    <script src="100_Questions_JS.js"></script>
+  </body>
+</html>

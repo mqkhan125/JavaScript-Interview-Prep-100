@@ -405,3 +405,97 @@ let randomInd = Math.floor(Math.random() * arrays.length);
 //  [arrays[ind], arrays[randomInd]] = [arrays[randomInd], arrays[ind]];
   }
   console.log(arrays)
+
+   // DOM base Questions
+  // Qno.31 How can you update the DOM base on user input in real-time (live preview of a form)
+  let inputName = document.querySelector('#name')
+  let inputEmail = document.querySelector("#email")
+  let nameValue = document.querySelector('.nameValue')
+  let emailValue = document.querySelector(".emailValue")
+  
+  inputName.addEventListener('input', (e) => {
+    let event = e.target.value;
+    nameValue.innerText = event;
+  })
+
+  inputEmail.addEventListener('input', (e) => {
+    emailValue.innerText = e.target.value;;
+  })
+
+
+  // Qno.32 How would you handle form validation in real time and show error mesages dynamically?
+  let nameInput = document.querySelector('#name')
+  let emailInput = document.querySelector('#email')
+  let passwordInput = document.querySelector('#password')
+  let nameError = document.querySelector(".nameError");
+  let emailError = document.querySelector(".emailError");
+  let passwordError = document.querySelector(".passwordError");
+
+
+ nameInput.addEventListener("input", (e) => {
+  let name = e.target.value;
+  if(name.length < 4){
+    nameError.innerText = 'Name must be atleast 4 characters';
+  }else{
+    nameError.innerText = "";
+  }
+});
+
+ emailInput.addEventListener("input", (e) => {
+  let email = e.target.value;
+  if(!email.includes('@') || !email.includes('.')){    
+    emailError.innerText = "must be require At (@) and dot (.)";
+  }else{
+    emailError.innerText = '';
+  }
+});
+
+ passwordInput.addEventListener("input", (e) => {
+  let password = e.target.value;
+  if(password.length < 8){
+  passwordError.innerText = 'password should be atleast 8 number';
+  }else{
+    passwordError.innerText = "";
+  }
+});
+
+
+
+// Qno.33 How do you find the closest ancestor element when another element is clicked(show/hide)
+let child = document.querySelector("#child")
+
+child.addEventListener("click", (e) => {
+   console.log(e.target.closest('.parent'))
+})
+
+// Qno.34 How would toggle a class on an element when another element is clicked (show/hide)
+let sideBar = document.querySelector('.sidebar')
+let button = document.querySelector('button')
+
+button.addEventListener("click", () => {
+  sideBar.classList.toggle('show-side-bar')
+  console.log('show')
+})
+
+// Qno.35  Create a show/Hide Password Toggle
+let passwordInp = document.querySelector('#pass')
+let btn = document.querySelector('button')
+
+btn.addEventListener('click', () => {
+  let passwordType = passwordInp.type;
+  passwordInp.type = passwordType  === "password" ? "text" : "password";
+  btn.innerText = passwordType === "password" ? "Hide" : "Show";
+})
+
+
+// Qno.36 Create a stcky Header on Scroll. the header beacomes fixed to the top after scorlling down.
+// (key concepts: scroll event, window.scrollY, classList.add/remove)
+let navbar = document.querySelector('nav')
+
+window.addEventListener('scroll', (e) => {
+  if(window.scrollY > 200){
+    navbar.classList.add('sticky')
+  } else{
+    navbar.classList.remove('sticky')
+  }
+})
