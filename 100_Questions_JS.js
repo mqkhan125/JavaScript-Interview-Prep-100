@@ -499,3 +499,88 @@ window.addEventListener('scroll', (e) => {
     navbar.classList.remove('sticky')
   }
 })
+
+
+// Qno.37 Guess the output
+// Time and Date base Questions
+let dates = new Date();
+console.log(dates.getDate())
+console.log(dates.toLocaleString())
+
+
+// Qno.38 Validate that a user's selected range is no loger than 30 days.
+let nowDate = new Date('2025-03-01')
+let userDate = new Date('2025-05-01')
+
+let diff = userDate - nowDate;
+let numsOfdays = Math.floor(diff /1000 /60 /60 /24) // 1sec = 1000ms
+console.log(numsOfdays)
+if(numsOfdays > 30){
+  console.log('date khatam hogya hay... 30days pore hoge')
+}else{
+  console.log('Congratulations your form submit')
+}
+
+
+// Qno.39 Calculate difference between tow dates in the format of "Years_months_days_hours_minutes_second"
+function takeDifference(start,end){
+
+  let startDate = new Date(start);
+  let endDate = new Date(end)
+  
+  let diff = (endDate - startDate)/1000
+  
+  let years = Math.floor(diff / (60 * 60 * 24 * 365))
+  diff = diff % (60 * 60 * 24 * 365);
+
+  let months = Math.floor(diff / (60 * 60 * 24 * 30))
+  diff = diff % (60 * 60 * 24 * 30);
+
+  let days = Math.floor(diff / (60 * 60 * 24))
+  diff = diff % (60 * 60 * 24);
+
+  let hours = Math.floor(diff / (60 * 60))
+  diff = diff % (60 * 60);
+
+  let minutes = Math.floor(diff / (60))
+  let seconds = Math.floor(diff % (60));
+
+  return `${years} years ${months} months ${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+}
+
+let startingDate = new Date('2024-08-28T08:23:13.234Z')
+let endingDate = new Date('2025-07-23T09:24:12.323Z')
+
+let diffResults = takeDifference(startingDate, endingDate)
+console.log(diffResults)
+
+
+// Qno.40 Calculate the user's age from their date of birth
+let dob = new Date("1991-12-15")
+let currentDate = new Date();
+
+let age = currentDate.getFullYear() - dob.getFullYear();
+let monthDiff = currentDate.getMonth() - dob.getMonth();
+let dayDiff = currentDate.getDay() - dob.getDay();
+
+if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+  age--;
+}
+console.log(age)
+
+
+// Qno.41 Write a formatDate(dateStr) func that returns a user-friendly format like Jan 1,2025. 
+// Why is it better ot centralize this logic in a utility?
+let date = '2024-04-28T08:23:13.234Z';
+
+function formatDate(dateStr){
+  let date = new Date(dateStr)
+  return date.toLocaleDateString('en-IN', {
+   weekday: 'long',
+   month: 'short',
+   day: 'numeric',
+   year: "numeric"
+  })
+}
+let formatedDate = formatDate(date);
+console.log(formatedDate)
