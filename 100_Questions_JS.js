@@ -584,3 +584,261 @@ function formatDate(dateStr){
 }
 let formatedDate = formatDate(date);
 console.log(formatedDate)
+
+
+// function base Question
+// Qno.42 what is a pure function, and why is it useful in UI rendering?
+// In simple words, a pure function is predictable and does not depend on anything outside its parameters.
+function add(a, b) {
+  return a + b;  // Always returns same result for same a, b
+}
+console.log(add(2, 3)); // 5
+console.log(add(2, 3)); // 5 (same input, same output)
+
+// Qno.43 How would you use .map() to transform a list of products into a list of HTML elements?
+let products = document.querySelector(".products");
+
+let userData = [
+  {
+    name: "Qasim",
+    age: 23,
+  },
+  {
+    name: "Akram",
+    age: 28,
+  },
+];
+
+let container = "";
+userData.map((elem) => {
+  container += `
+  <p>${elem.name}</p>
+  <p>${elem.age}</p>
+  `;
+});
+products.innerHTML = container;
+
+
+// Qno.44 How do you use .reduce() to calculate the total price in a shooping cart?
+let arrReduce = [12, 20, 35, 55, 70, 100];
+let resultReducer = arrReduce.reduce((pre, next) => pre + next);
+console.log(resultReducer);
+
+
+// Qno.45 Explain immutability and how you would update an object in an array without mutating the original.
+// old Method
+let user = {
+  name : "shaheen",
+  age : 33
+}
+
+function update(user, name) {
+   user.name = name
+}
+console.log(user)
+update(user, "Naseem shah")
+console.log(user)
+
+// new Method
+let obj = {
+  name: "Qasim",
+  email: "qasim@gmail.com",
+  age: 21,
+};
+
+function reciveData(name, age) {
+  return { ...obj, name, age };
+}
+
+console.log(obj);
+let resultObj = reciveData("Ali", 40);
+console.log(resultObj);
+
+
+// Qno.46 How would you compose multiple function to transform data step by step (e.g sanitize -> trim -> capitalize)?
+// Scenario : you are preparing user input before storing it.
+// (Expected knowledge function composition, chaining, pipe or compose logic)
+
+// old Method or classic method
+let add = num => num + 2;
+let multiple = num => num * 5;
+let subt = num => num - 10;
+
+let resultAll = subt(multiple(add(5)))
+console.log(resultAll)
+
+// compose right to left by using reduceRight()
+// pipe left to right by using reduce()
+// new Method function method
+let add2 = (num) => num + 2;
+let multiple5 = (num) => num * 5;
+let subt10 = (num) => num - 10;
+
+function compose(...fns) {
+  return (val) => {
+    return fns.reduceRight((acc, curr) => {
+      // reduceRight() right se reduce karta ho and reduce() left se reduce karta hain
+      return curr(acc);
+    }, val);
+  };
+}
+
+let resultFunc = compose(subt10, multiple5, add2)(5);
+console.log(resultFunc);
+
+
+// Qno.47 how do you create logic for square, cube and  in array?
+
+// Method 1
+let array = [1, 2, 3, 4, 5, 6];
+// square logic
+function square(array) {
+  let outputArr = [];
+  for (let i = 0; i < array.length; i++) {
+    outputArr.push(array[i] * array[i]);
+  }
+  return outputArr;
+}
+
+  // cube logic
+  function cube(array) {
+    let outputArr = [];
+    for (let i = 0; i < array.length; i++) {
+      outputArr.push(array[i] * array[i] * array[i]);
+    }
+    return outputArr;
+  }
+
+  // diameter logic
+  function diameter(array) {
+    let outputArr = [];
+    for (let i = 0; i < array.length; i++) {
+      outputArr.push(2 * array[i]);
+    }
+    return outputArr;
+  }
+
+  let resultSqure = square(array);
+  let resultCube = cube(array);
+  let resultDimeter = diameter(array);
+
+  console.log(" squre " + resultSqure);
+  console.log(" cube " + resultCube);
+  console.log(" diameter " + resultDimeter);
+
+
+  // Method 2
+// separate logic for square , cube and diameter
+// squre logic 
+let squreLogic = (r) => {
+  return r*r;
+}
+
+// cubeLogic
+let cubeLogic = (r) => {
+  return r*r*r;
+}
+
+// diameterLogic
+let diameterLogic = (r) => {
+  return 2 * r;
+};
+
+
+let arr1 = [1,2,3,4,5];
+
+let calculate = function(logicFn){
+
+  let output = [];
+  for(let i=0; i<arr1.length; i++){
+    output.push(logicFn(arr1[i]))
+  }
+  return output;
+}
+
+let squreArr = calculate(squreLogic);
+let cubeArr = calculate(cubeLogic);
+let dimeterArr = calculate(diameterLogic);
+
+console.log(squreArr)
+console.log(cubeArr)
+console.log(dimeterArr)
+
+
+// Qno.48 How do you implement your own version of .map() function on arrays?
+// I create my ownMap() logic
+let arr2 = [1,2,3,4,5]
+
+let calculated = function(logicFn) {
+  let outputArr = [];
+  for (let i = 0; i < arr1.length; i++) {
+    outputArr.push(logicFn(arr2[i])); // change the logic
+  }
+  return outputArr;
+}
+
+ Array.prototype.ownMap = calculated;
+ let resultss = arr1.ownMap(diameterLogic) // ownMap(squreLogic) ownMap(cube Logic)
+ console.log(resultss)
+
+
+ // every() method me agar condition true hain tu true return keriga fasle hai tu fasle return karga.
+let mixArr =[1,2,"MkT", 3,5,"MQK",9]
+ let checkEvery = mixArr.every((elem) => {
+    return typeof elem === "number";
+})
+console.log("check" , checkEvery)
+
+// find() method find karta hai number ko number hai tu return karta ho agar nhi hai tu undefined return karta hai
+ let checkFind = mixArr.find((elem) => {
+    return elem === 9;
+})
+console.log("check" , checkFind)
+
+
+
+// Qno.49 How do you implement your own version of .filter() function on arrays?
+   let Arr1 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+// filter() method
+   let newArr = Arr1.filter(element => {
+      return element % 2 === 0
+   });
+    console.log(newArr)
+
+ // I create my ownFilter() logic
+ // method 1
+   function myOwnFilter(){
+     let outputArr = []
+     for(let i = 0; i < arr3.length; i++){
+      if(Arr1[i] % 2 === 0){
+        outputArr.push(Arr1[i])
+      }
+     }
+     return outputArr;
+   }
+    let myResult = myOwnFilter()
+    console.log(myResult)
+
+
+    // Method 2
+    // I create filter() logic 
+    let createFilterLogic = (elem) => {
+        return elem % 2 === 0;
+    }
+    
+    let filterFunc = (logic) => {
+
+       let outputArr = [];
+       for(let i = 0; i < arr3.length; i++){
+        if(logic(arr3[i])){
+          outputArr.push(arr3[i])
+        }
+       }
+       return outputArr
+    }
+
+    Array.prototype.myOwnFilter = filterFunc;
+    let filterResult = arr3.myOwnFilter((elem) => { // we can give same logic on here.
+         return elem % 2 !== 0;
+    })
+    console.log(filterResult)
